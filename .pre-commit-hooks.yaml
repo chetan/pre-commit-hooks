@@ -1,0 +1,9 @@
+- id: mysql-check-collation
+  stages: [commit]
+  name: MySQL Check Collation
+  description: Check for MySQL charset/collation problems
+  language: script
+  entry: ./mysql-check-collation/mysql-check-collation.sh
+  pass_filenames: false
+  types: [file]
+  files: \.sql$
