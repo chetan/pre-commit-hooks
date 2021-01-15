@@ -75,9 +75,9 @@ EOF
 );
 
 out=$(echo "$sql" | $MYSQL_CMD --table 2>&1 | grep -v Warning)
-count=$(echo "$out" | grep -v TABLE_SCHEMA | wc -l)
+count=$(echo "$out" | grep -v TABLE_SCHEMA | grep -ev '^$' | wc -l)
 if [[ $count -gt 0 ]]; then
-  echo "Found the following issues:"
+  echo "Found the following ($count) issues:"
   echo "$out"
   echo "Expected: charset=$charset collation=$collation"
   exit 2
